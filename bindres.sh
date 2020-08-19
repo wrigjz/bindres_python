@@ -56,7 +56,7 @@ $hbplus post_mini_noh.pdb -h 2.9 -d 4 -N -c
 
 ## This is for speedfill
 $speedfill -f post_mini_noh.pdb -d -ntop 10 -min 1.2 -max 1.4 -log
-$pymol -c $scripts/speedfill_residues.pml | grep ' X'  >| speedfill_residues.txt
+python3 $scripts/speedfill_residues.py >| speedfill_residues.txt
 
 # Pull all the data togeather, generate the numbering array
 $scripts/set_numbers.sh
