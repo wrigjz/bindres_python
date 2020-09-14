@@ -98,8 +98,19 @@ MIN_ARRAY = sorted(MERGED_LIST_UN, key=lambda x: x[3])
 # So get the max and min value for the 4rd ranked residue
 # then look for residues with a higher or equal max value, and residue with a lower or
 # equal min value
-MAX_NUMBER = MAX_ARRAY[3][2]
-MIN_NUMBER = MIN_ARRAY[3][3]
+# First we check that there are more than 4 elecments for each array, if les than 4 we
+# take all of them
+NO_OF_MAX=len(MAX_ARRAY)
+NO_OF_MIN=len(MIN_ARRAY)
+#print(NO_OF_MAX,NO_OF_MIN)
+if NO_OF_MAX >= 4:
+    MAX_NUMBER = MAX_ARRAY[3][2]
+else:
+    MAX_NUMBER = MAX_ARRAY[NO_OF_MAX-1][2]
+if NO_OF_MIN >= 4:
+    MIN_NUMBER = MIN_ARRAY[3][3]
+else:
+    MIN_NUMBER = MIN_ARRAY[NO_OF_MIN-1][3]
 #print(MAX_NUMBER, MIN_NUMBER)
 INDEX_ST = -1
 INDEX_UN = -1
