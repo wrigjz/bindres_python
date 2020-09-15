@@ -81,9 +81,8 @@ INFILE.close()
 # and then remove where sasa <= cutoff
 MERGED_LIST_SASA = tuple(zip(RESNUMBER, RESNAME, MAX_VALUE, MIN_VALUE, RELSASA, BINDING, SPEEDFILL))
 MERGED_LIST_SPEEDFILL = list(filter(lambda a: a[6] != "0", MERGED_LIST_SASA))
-MERGED_LIST_ST = list(filter(lambda a: a[4] > 50.0, MERGED_LIST_SPEEDFILL))
-MERGED_LIST_UN = list(filter(lambda a: a[4] > 30.0, MERGED_LIST_SPEEDFILL))
-                   # Remove 0 values from network list
+MERGED_LIST_ST = list(filter(lambda a: a[4] > 30.0, MERGED_LIST_SPEEDFILL))
+MERGED_LIST_UN = list(filter(lambda a: a[4] > 15.0, MERGED_LIST_SPEEDFILL))
 MERGED_LIST_LEN_ST = len(MERGED_LIST_ST)
 MERGED_LIST_LEN_UN = len(MERGED_LIST_UN)
 
