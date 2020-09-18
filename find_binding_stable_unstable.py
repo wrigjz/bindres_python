@@ -12,7 +12,7 @@
 # We then look for any Stable residues vdw bonded to any Unstable residues (Matrix pair)
 # Then look for any other residues (SASA > cutoff & Kc == 9) that are vdw bonded to
 # either of the Stab/UnStab matrix pairs - we call these Bridge residues
-# 
+#
 # The main difference between this one and the critires one is this one accepts extra columns
 # for binding residues and prints out bringin results, also the stable and unstable tuples
 # are separate and using different SASA values
@@ -157,12 +157,12 @@ for LINE in NB2FILE:
         temp1 = int(LINE[1:5])
         temp2 = int(LINE[15:19])
         # Check if this pairing has been seen before
-        marker = 0
+        MARKER = 0
         for i in range(0, INDEX_NB2+1):
             if temp1 == RESIDUE1[i] and temp2 == RESIDUE2[i]:
-                marker = 1
+                MARKER = 1
         # This is a new pair so we will save it
-        if marker == 0:
+        if MARKER == 0:
             INDEX_NB2 += 1
             RESIDUE1.append(temp1)
             RESIDUE2.append(temp2)

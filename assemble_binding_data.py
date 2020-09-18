@@ -30,7 +30,7 @@
 #    consurf grades files
 #    stability file (comes from amber decomp after processing with extract_amber_energies.py)
 #    binding site file - this comes from PyMOL - this is a main difference between this version
-#                      and the critires version, we extendd the binding residues to N +-1 
+#                      and the critires version, we extendd the binding residues to N +-1
 #                      to cover for gaps
 
 import os.path
@@ -169,12 +169,12 @@ for k in range(0, 10):
 print("Resi Ty cons   int    vdw    ele    pol    npl   sasa     gas_e  rank \
  grade max min  PDB  Bind SPEED")
 for j in range(MIN_RESNUM, MAX_RESNUM+1):
-    res_max = GRADE[j] + CONSURF[j]
-    res_min = GRADE[j] - CONSURF[j]
+    RES_MAX = GRADE[j] + CONSURF[j]
+    RES_MIN = GRADE[j] - CONSURF[j]
     # We set ACE/NME max/min to 5 and CONSURF to 0 to ignore them
     if RESNAME[j] == "ACE" or RESNAME[j] == "NME":
-        res_max = 5
-        res_min = 5
+        RES_MAX = 5
+        RES_MIN = 5
         CONSURF[j] = 0
     RESNUMBER_STR = str(RESNUMBER[j])
     ORIGINAL = (NUMBERS.get(RESNUMBER_STR))
@@ -186,5 +186,5 @@ for j in range(MIN_RESNUM, MAX_RESNUM+1):
           "{:6.1f}".format(POL_STAB[j]), "{:6.1f}".format(NPL_STAB[j]), \
           "{:6.1f}".format(RELSASA[j]), "{:9.3f}".format(GAS_ENE[j]), \
           "  {:>2}".format(RANK[j]), "   {:>2}".format(GRADE[j]), \
-          "{:>3}".format(res_max), "{:>3}".format(res_min), " {:>4}".format(ORIGINAL), \
+          "{:>3}".format(RES_MAX), "{:>3}".format(RES_MIN), " {:>4}".format(ORIGINAL), \
           "{:>3}".format(BINDING[j]), "{:>3}".format(SPEEDFILL[j]))
