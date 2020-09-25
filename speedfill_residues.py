@@ -37,7 +37,6 @@ Z_SPH = [0 for i in range(0, SPH_LINES)]
 
 # Set up some counters
 INDEX = -1
-INDEX_SPH = -1
 RESCOUNT = -1
 PREVIOUS_RESID = 99999
 
@@ -66,24 +65,20 @@ WANTED_RESNA = [0 for i in range(0, RESCOUNT+2)]
 # Read in the Speedfill file and store the crds and sphere number
 for LINE in SPHFILE:
     if LINE[0:4] == "ATOM" or LINE[0:6] == "HETATM":
-        INDEX_SPH += 1
-        SPHID[INDEX_SPH] = LINE[6:11]
-        X_SPH[INDEX_SPH] = float(LINE[30:38])
-        Y_SPH[INDEX_SPH] = float(LINE[38:46])
-        Z_SPH[INDEX_SPH] = float(LINE[46:54])
-
-# Now check atoms to see if there are within cutoff DISTANCE of a sphere
-for i in range(0, INDEX+1):
-    if RESNA[i] != "ACE" and RESNA[i] != "NME": # Ignore NME and ACE
-        for j in range(0, INDEX_SPH+1):
-            X_DIFF_SQ = (X_CRD[i] - X_SPH[j]) ** 2
-            y_DIFF_SQ = (Y_CRD[i] - Y_SPH[j]) ** 2
-            Z_DIFF_SQ = (Z_CRD[i] - Z_SPH[j]) ** 2
-            DISTANCE = math.sqrt(X_DIFF_SQ + y_DIFF_SQ + Z_DIFF_SQ)
-            if DISTANCE <= CUTOFF: # Flag this residue as wanted
-                #print(DISTANCE, ATOMID[i], SPHID[j])
-                WANTED_RESID[RESID[i]] = RESID[i]
-                WANTED_RESNA[RESID[i]] = RESNA[i]
+        X_SPH = float(LINE[30:38])
+        Y_SPH = float(LINE[38:46])
+        Z_SPH = float(LINE[46:54])
+        # Now check atoms to see if there are within cutoff DISTANCE of a sphere
+        for i in range(0, INDEX+1):
+            if RESNA[i] != "ACE" and RESNA[i] != "NME": # Ignore NME and ACE
+                X_DIFF_SQ = (X_CRD[i] - X_SPH) ** 2
+                y_DIFF_SQ = (Y_CRD[i] - Y_SPH) ** 2
+                Z_DIFF_SQ = (Z_CRD[i] - Z_SPH) ** 2
+                DISTANCE = math.sqrt(X_DIFF_SQ + y_DIFF_SQ + Z_DIFF_SQ)
+                if DISTANCE <= CUTOFF: # Flag this residue as wanted
+                    #print(DISTANCE, ATOMID[i], SPHID[j])
+                    WANTED_RESID[RESID[i]] = RESID[i]
+                    WANTED_RESNA[RESID[i]] = RESNA[i]
 
 # Now check the residues and print out the ones we need
 for i in range(0, RESCOUNT+1):
