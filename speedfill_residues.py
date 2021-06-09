@@ -8,7 +8,7 @@ import math
 
 # This script will take a pdb file prepared by AMBER and a speedfill pdb SPH file
 # and return the RESIDues that are within a cutoff DISTANCE from any of the SPH 'atoms'
-# the post_minix.pdb file should already have had the hydrogens removed
+# the post_mini_noh.pdb file should already have had the hydrogens removed
 
 # Set the cutoff limit
 CUTOFF = 5.0
