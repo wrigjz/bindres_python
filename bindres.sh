@@ -9,7 +9,6 @@
 
 export hbplus=/home/programs/hbplus-3.06.linux/hbplus
 export freesasa=/home/programs/freesasa-2.03/linux/bin/freesasa
-export speedfill=/home/programs/speedfill/speedfill.linux
 export pymol=/home/programs/anaconda/linux-5.3.6/bin/pymol
 export scripts=../bindres_scripts
 export consurf_scripts=../consurf_scripts
@@ -56,10 +55,6 @@ sed -i -e 's/CYX/CYS/' -e 's/HID/HIS/' -e 's/HIE/HIS/' -e 's/HIP/HIS/' post_mini
 
 # Run HBPLUS - needed for the vdw matrix
 $hbplus post_mini_noh.pdb -h 2.9 -d 4 -N -c
-
-## This is for speedfill
-$speedfill -f post_mini_noh.pdb -d -ntop 10 -min 1.2 -max 1.7 -log
-python3 $scripts/speedfill_residues.py >| speedfill_residues.txt
 
 # Pull all the data togeather, generate the numbering array
 $scripts/set_numbers.sh

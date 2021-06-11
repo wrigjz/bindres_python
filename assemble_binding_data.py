@@ -70,13 +70,14 @@ if os.path.isfile("binding.txt"):
     INFILE.close()
 
 # Now allocate the speedfill residues
-INFILE = open("speedfill_residues.txt", "r")
-for LINE in INFILE:
-    resid, *junk = [x.strip() for x in LINE.split()]
-    for j in range(0, NUM_LINES+1):
-        if int(resid) == j:
-            SPEEDFILL[j] = 1
-INFILE.close()
+if os.path.isfile("speedfill_residues.txt"):
+    INFILE = open("speedfill_residues.txt", "r")
+    for LINE in INFILE:
+        resid, *junk = [x.strip() for x in LINE.split()]
+        for j in range(0, NUM_LINES+1):
+            if int(resid) == j:
+                SPEEDFILL[j] = 1
+    INFILE.close()
 
 # A bit of a fix here, we now assume that reisdues neigbouring binding ones are
 # included in the binding site

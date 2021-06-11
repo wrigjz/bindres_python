@@ -86,9 +86,8 @@ INFILE.close()
 # Here we merge the resnumber, resname, max, min and relsasa into a tuple
 # and then remove where sasa <= cutoff
 MERGED_LIST_SASA = tuple(zip(RESNUMBER, RESNAME, MAX_VALUE, MIN_VALUE, RELSASA, BINDING, SPEEDFILL))
-MERGED_LIST_SPEEDFILL = list(filter(lambda a: a[6] != "0", MERGED_LIST_SASA)) # Only if speedfill ok
-MERGED_LIST_ST = list(filter(lambda a: a[4] > 30.0, MERGED_LIST_SPEEDFILL)) # ST where > ST_SASA
-MERGED_LIST_UN = list(filter(lambda a: a[4] > 15.0, MERGED_LIST_SPEEDFILL)) # UN where > UN_SASA
+MERGED_LIST_ST = list(filter(lambda a: a[4] > 30.0, MERGED_LIST_SASA)) # ST where > ST_SASA
+MERGED_LIST_UN = list(filter(lambda a: a[4] >  5.0, MERGED_LIST_SASA)) # UN where > UN_SASA
 MERGED_LIST_LEN_ST = len(MERGED_LIST_ST)
 MERGED_LIST_LEN_UN = len(MERGED_LIST_UN)
 
